@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Raccolta di web app didattiche e interattive di matematica e fisica: teoria, simulazioni e quiz direttamente dal browser.">
+<title>Matematica &amp; Fisica · Web app didattiche</title>
+<style>
+:root{
+  --bg:#f7f8fa;--surface:#fff;--surface2:#f9fafc;
+  --primary:#1565c0;--primary-d:#0d47a1;--primary-l:#eef3fb;
+  --text:#1a1a2e;--muted:#6b7280;--border:#e0e4ed;
+  --radius:12px;
+  --math:#1565c0;--phys:#c62828;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  font-size:clamp(15px,2.3vw,16.5px);line-height:1.6}
+
+/* ===== Header ===== */
+header{background:var(--surface);border-bottom:1px solid var(--border);
+  padding:.7rem 1rem;position:sticky;top:0;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+header h1{font-size:clamp(1.02rem,3.6vw,1.32rem);color:var(--text);
+  font-weight:700;letter-spacing:-.01em}
+header .sub{color:var(--muted);font-size:.8em;font-weight:600;white-space:nowrap}
+
+/* ===== Layout ===== */
+main{padding:1.1rem 1rem 2rem;max-width:960px;margin:0 auto}
+
+/* ===== Cards ===== */
+.card{background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1.15rem 1.2rem;margin-bottom:1.1rem;
+  box-shadow:0 1px 2px rgba(20,30,60,.04)}
+.card h2{margin:0 0 .55rem;color:var(--text);font-size:1.14em;font-weight:700;
+  letter-spacing:-.01em}
+.card p{margin:.35rem 0;color:var(--text)}
+.tip{background:#eaf6ec;border-left:3px solid #2e7d32;padding:.5rem .9rem;
+  margin:.7rem 0 0;border-radius:0 8px 8px 0;font-size:.9em}
+
+/* ===== Subject section ===== */
+.subject{margin-top:1.5rem}
+.subject-h{display:flex;align-items:center;gap:.55rem;
+  font-size:clamp(1.05rem,3.4vw,1.2rem);font-weight:700;color:var(--text);
+  letter-spacing:-.01em;margin:0 0 .8rem;padding-bottom:.5rem;
+  border-bottom:2px solid var(--border)}
+.subject-h .ic{font-size:1.15em}
+.subject.math .subject-h{border-color:#cfe0f6}
+.subject.phys .subject-h{border-color:#f6d4d4}
+.count{font-size:.6em;font-weight:700;color:var(--primary-d);
+  background:var(--primary-l);border:1px solid var(--border);
+  padding:.2rem .55rem;border-radius:999px;letter-spacing:.02em;margin-left:auto}
+.subject.phys .count{color:#b71c1c;background:#fdeaea;border-color:#f6d4d4}
+
+/* ===== App grid (statica home-grid) ===== */
+.home-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:.75rem}
+.home-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1rem 1.05rem;cursor:pointer;text-align:left;
+  font-size:1em;font-family:inherit;color:inherit;text-decoration:none;
+  display:flex;flex-direction:column;
+  box-shadow:0 1px 2px rgba(20,30,60,.04);
+  border-left:3px solid var(--primary);
+  transition:border-color .18s,box-shadow .18s,transform .14s}
+.home-card:hover{box-shadow:0 4px 14px rgba(21,101,192,.14);transform:translateY(-2px)}
+.subject.phys .home-card{border-left-color:var(--phys)}
+.subject.phys .home-card:hover{box-shadow:0 4px 14px rgba(198,40,40,.14)}
+.home-card .ico{font-size:1.7em;display:block;margin-bottom:.35rem;line-height:1}
+.home-card strong{color:var(--primary-d);display:block;margin-bottom:.2rem;font-size:1.01em}
+.subject.phys .home-card strong{color:#b71c1c}
+.home-card .desc{color:var(--muted);font-size:.86em;line-height:1.45}
+.home-card .url{margin-top:.5rem;color:var(--primary);font-size:.74em;font-weight:600;
+  letter-spacing:.01em;opacity:.85}
+.subject.phys .home-card .url{color:var(--phys)}
+
+/* ===== Footer ===== */
+footer{max-width:960px;margin:1.8rem auto 0;padding:1.1rem 1rem;
+  color:var(--muted);font-size:.82em;text-align:center;border-top:1px solid var(--border)}
+footer a{color:var(--primary-d);text-decoration:none;font-weight:600}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <h1>🎓 Matematica &amp; Fisica</h1>
+  <span class="sub">Raccolta web app</span>
+</header>
+<main>
+
+  <div class="card">
+    <h2>Le web app disponibili</h2>
+    <p>Una raccolta di applicazioni web <strong>didattiche e interattive</strong> — teoria essenziale, simulazioni animate e quiz con feedback immediato — per studiare matematica e fisica direttamente dal browser, anche da smartphone.</p>
+    <div class="tip">💡 Tocca una scheda per aprire l'app corrispondente in una nuova finestra. Buono studio!</div>
+  </div>
+
+  <!-- ============ MATEMATICA ============ -->
+  <section class="subject math">
+    <h2 class="subject-h"><span class="ic">📐</span>Matematica<span class="count">5 app</span></h2>
+    <div class="home-grid">
+
+      <a class="home-card" href="https://ventilii-gif.github.io/Calcolo-letterale-/" target="_blank" rel="noopener">
+        <span class="ico">🔤</span>
+        <strong>Calcolo algebrico</strong>
+        <span class="desc">Monomi, polinomi, prodotti notevoli, scomposizione e frazioni algebriche: teoria, esercizi guidati passo-passo e quiz.</span>
+        <span class="url">ventilii-gif.github.io/Calcolo-letterale-</span>
+      </a>
+
+      <a class="home-card" href="https://ventilii-gif.github.io/lettere/" target="_blank" rel="noopener">
+        <span class="ico">✖️</span>
+        <strong>Prodotti in algebra</strong>
+        <span class="desc">Animazioni passo-passo sui prodotti tra espressioni algebriche e sulla scomposizione in fattori.</span>
+        <span class="url">ventilii-gif.github.io/lettere</span>
+      </a>
+
+      <a class="home-card" href="https://ventilii-gif.github.io/Piano-cartesiano-1/" target="_blank" rel="noopener">
+        <span class="ico">📐</span>
+        <strong>Piano cartesiano</strong>
+        <span class="desc">Geometria analitica: retta, parabola e coniche con lezioni illustrate, grafici animati e quiz.</span>
+        <span class="url">ventilii-gif.github.io/Piano-cartesiano-1</span>
+      </a>
+
+      <a class="home-card" href="https://ventilii-gif.github.io/studio-funzioni/" target="_blank" rel="noopener">
+        <span class="ico">📈</span>
+        <strong>Studio di funzioni</strong>
+        <span class="desc">Dominio, simmetrie, segno, limiti, asintoti e derivata prima per lo studio completo di una funzione.</span>
+        <span class="url">ventilii-gif.github.io/studio-funzioni</span>
+      </a>
+
+      <a class="home-card" href="https://ventilii-gif.github.io/rota/" target="_blank" rel="noopener">
+        <span class="ico">🛢️</span>
+        <strong>Solidi di rotazione</strong>
+        <span class="desc">Come nascono cilindro, cono e sfera dalla rotazione di una figura piana: superfici e volumi, per la terza media.</span>
+        <span class="url">ventilii-gif.github.io/rota</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ FISICA ============ -->
+  <section class="subject phys">
+    <h2 class="subject-h"><span class="ic">⚛️</span>Fisica<span class="count">5 app</span></h2>
+    <div class="home-grid">
+
+      <a class="home-card" href="https://ventilii-gif.github.io/vettori/" target="_blank" rel="noopener">
+        <span class="ico">➡️</span>
+        <strong>Vettori</strong>
+        <span class="desc">Modulo, componenti, somma, differenza e prodotti tra vettori, con simulazioni animate e quiz.</span>
+        <span class="url">ventilii-gif.github.io/vettori</span>
+      </a>
+
+      <a class="home-card" href="https://ventilii-gif.github.io/statica/" target="_blank" rel="noopener">
+        <span class="ico">⚖️</span>
+        <strong>Equilibrio dei corpi</strong>
+        <span class="desc">Equilibrio di punti e corpi rigidi: funi, piano inclinato, momento, leve e travi, con simulazioni interattive.</span>
+        <span class="url">ventilii-gif.github.io/statica</span>
+      </a>
+
+      <a class="home-card" href="https://ventilii-gif.github.io/dinamica/" target="_blank" rel="noopener">
+        <span class="ico">🏎️</span>
+        <strong>Principi della dinamica</strong>
+        <span class="desc">Le tre leggi di Newton sul piano orizzontale e inclinato, con attrito, simulazioni e quiz.</span>
+        <span class="url">ventilii-gif.github.io/dinamica</span>
+      </a>
+
+      <a class="home-card" href="https://ventilii-gif.github.io/circolare/" target="_blank" rel="noopener">
+        <span class="ico">🎡</span>
+        <strong>Moto circolare e armonico</strong>
+        <span class="desc">Dal moto circolare uniforme al moto armonico: velocità, accelerazione centripeta, molla e pendolo.</span>
+        <span class="url">ventilii-gif.github.io/circolare</span>
+      </a>
+
+      <a class="home-card" href="https://ventilii-gif.github.io/rela/" target="_blank" rel="noopener">
+        <span class="ico">🚀</span>
+        <strong>Relatività speciale</strong>
+        <span class="desc">Spaziotempo, dilatazione dei tempi, dinamica relativistica e diagrammi di Minkowski, con interfaccia bilingue.</span>
+        <span class="url">ventilii-gif.github.io/rela</span>
+      </a>
+
+    </div>
+  </section>
+
+  <footer>
+    Raccolta di web app didattiche · <a href="https://github.com/ventilii-gif" target="_blank" rel="noopener">github.com/ventilii-gif</a>
+  </footer>
+
+</main>
+</body>
+</html>
