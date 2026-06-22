@@ -86,6 +86,15 @@ main{padding:1.1rem 1rem 2rem;max-width:960px;margin:0 auto}
   border:1px solid #d8ccec;font-size:.72em;font-weight:700;padding:.14rem .55rem;
   border-radius:999px;letter-spacing:.02em}
 
+/* ===== Avviso / disclaimer ===== */
+.notice{display:flex;gap:.55rem;align-items:flex-start;background:var(--primary-l);
+  border:1px solid #d4e2f5;border-radius:10px;padding:.65rem .9rem;margin:0 0 1.1rem;
+  font-size:.82em;line-height:1.5;color:#39424f}
+.notice .ni{flex:0 0 auto;font-size:1.05em;line-height:1.4}
+.notice p{margin:0}
+.notice strong{color:var(--text);font-weight:700}
+.notice.end{margin:1.5rem 0 0}
+
 /* ===== Footer ===== */
 footer{max-width:960px;margin:1.8rem auto 0;padding:1.1rem 1rem;
   color:var(--muted);font-size:.82em;text-align:center;border-top:1px solid var(--border)}
@@ -104,6 +113,11 @@ footer a:hover{text-decoration:underline}
     <h2>Le web app disponibili</h2>
     <p>Una raccolta di applicazioni web <strong>didattiche e interattive</strong> — teoria essenziale, simulazioni animate e quiz con feedback immediato — per studiare matematica e fisica direttamente dal browser, anche da smartphone.</p>
     <div class="tip">💡 Tocca una scheda per aprire l'app corrispondente in una nuova finestra. Buono studio!</div>
+  </div>
+
+  <div class="notice">
+    <span class="ni" aria-hidden="true">ℹ️</span>
+    <p>Questa pagina e le web app collegate sono state realizzate con l'aiuto dell'intelligenza artificiale <strong>Claude</strong> e di diversi suoi agenti. Sono <strong>schede di supporto allo studio personale</strong>: affiancano, ma non sostituiscono, l'uso critico del manuale e la guida di un docente esperto.</p>
   </div>
 
   <!-- ============ MATEMATICA ============ -->
@@ -177,6 +191,11 @@ footer a:hover{text-decoration:underline}
     </div>
   </section>
 
+  <div class="notice">
+    <span class="ni" aria-hidden="true">ℹ️</span>
+    <p>Questa pagina e le web app collegate sono state realizzate con l'aiuto dell'intelligenza artificiale <strong>Claude</strong> e di diversi suoi agenti. Sono <strong>schede di supporto allo studio personale</strong>: affiancano, ma non sostituiscono, l'uso critico del manuale e la guida di un docente esperto.</p>
+  </div>
+
   <!-- ============ FISICA ============ -->
   <section class="subject phys">
     <h2 class="subject-h"><span class="ic">⚛️</span>Fisica<span class="count">9 app</span></h2>
@@ -248,6 +267,11 @@ footer a:hover{text-decoration:underline}
     </div>
   </section>
 
+  <div class="notice">
+    <span class="ni" aria-hidden="true">ℹ️</span>
+    <p>Questa pagina e le web app collegate sono state realizzate con l'aiuto dell'intelligenza artificiale <strong>Claude</strong> e di diversi suoi agenti. Sono <strong>schede di supporto allo studio personale</strong>: affiancano, ma non sostituiscono, l'uso critico del manuale e la guida di un docente esperto.</p>
+  </div>
+
   <!-- ============ ALTRO ============ -->
   <section class="subject altro">
     <h2 class="subject-h"><span class="ic">🧩</span>Altro<span class="count">2 in arrivo</span></h2>
@@ -276,6 +300,11 @@ footer a:hover{text-decoration:underline}
 
     </div>
   </section>
+
+  <div class="notice end">
+    <span class="ni" aria-hidden="true">ℹ️</span>
+    <p>Ricorda: questa pagina e le web app collegate sono state realizzate con l'aiuto dell'intelligenza artificiale <strong>Claude</strong> e di diversi suoi agenti. Restano strumenti di aiuto allo studio personale, da affiancare con spirito critico al manuale e alla guida di un docente esperto. Buono studio!</p>
+  </div>
 
   <footer>
     Raccolta di web app didattiche · <a href="https://github.com/ventilii-gif" target="_blank" rel="noopener">github.com/ventilii-gif</a>
