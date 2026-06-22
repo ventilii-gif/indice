@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#ffffff">
 <meta name="description" content="Raccolta di web app didattiche e interattive di matematica e fisica: teoria, simulazioni e quiz direttamente dal browser.">
 <title>Matematica &amp; Fisica · Web app didattiche</title>
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
 :root{
   --bg:#f7f8fa;--surface:#fff;--surface2:#f9fafc;
@@ -100,12 +101,44 @@ footer{max-width:960px;margin:1.8rem auto 0;padding:1.1rem 1rem;
   color:var(--muted);font-size:.82em;text-align:center;border-top:1px solid var(--border)}
 footer a{color:var(--primary-d);text-decoration:none;font-weight:600}
 footer a:hover{text-decoration:underline}
+
+/* ===== Interruttore tema ===== */
+.hd-right{display:flex;align-items:center;gap:.55rem}
+.theme-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);
+  border-radius:8px;padding:.32rem .55rem;font-size:1.02em;line-height:1;cursor:pointer;
+  font-family:inherit;transition:background .15s,border-color .15s}
+.theme-btn:hover{background:var(--primary-l);border-color:var(--primary)}
+@media(max-width:430px){.hd-right .sub{display:none}}
+
+/* ===== Tema scuro (risparmio energetico) ===== */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0f141a;--surface:#171d26;--surface2:#1d242f;
+  --primary:#5b9be8;--primary-d:#9cc2f2;--primary-l:#16273c;
+  --text:#e7eaf0;--muted:#9aa4b4;--border:#2b333f;
+  --math:#5b9be8;--phys:#ef6a6a;
+}
+:root[data-theme="dark"] .tip{background:#12301d;border-left-color:#3fa564;color:#cfe9d6}
+:root[data-theme="dark"] .notice{border-color:#27425f;color:#c5cedb}
+:root[data-theme="dark"] .subject.math .subject-h{border-color:#24405f}
+:root[data-theme="dark"] .subject.phys .subject-h{border-color:#5a2b2b}
+:root[data-theme="dark"] .subject.phys .count{color:#f3a4a4;background:#341c1c;border-color:#5a2b2b}
+:root[data-theme="dark"] .subject.phys .home-card strong{color:#f3a4a4}
+:root[data-theme="dark"] .subject.altro .subject-h{border-color:#3c2f55}
+:root[data-theme="dark"] .subject.altro .count{color:#c4abef;background:#241a37;border-color:#3c2f55}
+:root[data-theme="dark"] .subject.altro .home-card{border-left-color:#9575cd}
+:root[data-theme="dark"] .subject.altro .home-card strong{color:#c4abef}
+:root[data-theme="dark"] .subject.altro .home-card .url{color:#c4abef}
+:root[data-theme="dark"] .soon-badge{color:#c4abef;background:#241a37;border-color:#3c2f55}
 </style>
 </head>
 <body>
 <header>
   <h1>🎓 Matematica &amp; Fisica</h1>
-  <span class="sub">Raccolta web app</span>
+  <div class="hd-right">
+    <span class="sub">Raccolta web app</span>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Attiva o disattiva il tema scuro" title="Tema chiaro / scuro">🌙</button>
+  </div>
 </header>
 <main>
 
@@ -301,5 +334,19 @@ footer a:hover{text-decoration:underline}
   </footer>
 
 </main>
+<script>
+(function(){
+  var b=document.getElementById('themeBtn'),m=document.querySelector('meta[name="theme-color"]');
+  function cur(){return document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light';}
+  function apply(t){
+    document.documentElement.setAttribute('data-theme',t);
+    if(b)b.textContent=t==='dark'?'☀️':'🌙';
+    if(m)m.setAttribute('content',t==='dark'?'#0f141a':'#ffffff');
+  }
+  apply(cur());
+  if(b)b.addEventListener('click',function(){var t=cur()==='dark'?'light':'dark';try{localStorage.setItem('theme',t);}catch(e){}apply(t);});
+  try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){if(!localStorage.getItem('theme'))apply(e.matches?'dark':'light');});}catch(e){}
+})();
+</script>
 </body>
 </html>
