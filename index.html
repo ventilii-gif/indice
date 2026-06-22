@@ -60,7 +60,7 @@ main{padding:1.1rem 1rem 2rem;max-width:960px;margin:0 auto}
 .home-card{background:var(--surface);border:1px solid var(--border);
   border-radius:var(--radius);padding:1rem 1.05rem;cursor:pointer;text-align:left;
   font-size:1em;font-family:inherit;color:inherit;text-decoration:none;
-  display:flex;flex-direction:column;
+  display:flex;flex-direction:column;position:relative;
   box-shadow:0 1px 2px rgba(20,30,60,.04);
   border-left:3px solid var(--primary);
   transition:border-color .18s,box-shadow .18s,transform .14s}
@@ -74,6 +74,10 @@ main{padding:1.1rem 1rem 2rem;max-width:960px;margin:0 auto}
 .home-card .url{margin-top:.5rem;color:var(--primary);font-size:.74em;font-weight:600;
   letter-spacing:.01em;opacity:.85}
 .subject.phys .home-card .url{color:var(--phys)}
+.langwarn{position:absolute;top:.55rem;right:.6rem;display:none;
+  font-size:.64em;font-weight:700;letter-spacing:.03em;white-space:nowrap;
+  background:var(--surface2);border:1px solid var(--border);color:var(--muted);
+  padding:.1rem .42rem;border-radius:999px}
 
 /* ===== Altro (schede in arrivo) ===== */
 .subject.altro .subject-h{border-color:#d8ccec}
@@ -294,7 +298,7 @@ footer a:hover{text-decoration:underline}
         <span class="url">ventilii-gif.github.io/termodinamica</span>
       </a>
 
-      <a class="home-card" href="https://ventilii-gif.github.io/relativita/" target="_blank" rel="noopener">
+      <a class="home-card" href="https://ventilii-gif.github.io/relativita/" target="_blank" rel="noopener" data-langs="it en">
         <span class="ico">🚀</span>
         <strong>Relatività speciale</strong>
         <span class="desc">Spaziotempo, dilatazione dei tempi, dinamica relativistica e diagrammi di Minkowski, con interfaccia bilingue.</span>
@@ -399,6 +403,7 @@ footer a:hover{text-decoration:underline}
     en:"A collection of interactive educational web apps for mathematics and physics: theory, simulations and quizzes right in your browser.",
     pt:"Coleção de web apps didáticos e interativos de matemática e física: teoria, simulações e quizzes direto no navegador."
   };
+  var WARN={it:"Questa app non è ancora disponibile in questa lingua",en:"This app isn't available in this language yet",pt:"Este app ainda não está disponível neste idioma"};
   /* [titolo, descrizione] per ogni app, indicizzate per slug dell'URL */
   var CARDS={
     "Calcolo-letterale-":{
@@ -523,6 +528,13 @@ footer a:hover{text-decoration:underline}
       var tr=rec[l]||rec.it, s=c.querySelector('strong'), d=c.querySelector('.desc');
       if(s)s.textContent=tr[0];
       if(d)d.textContent=tr[1];
+      if(c.tagName==='A'){
+        var w=c.querySelector('.langwarn');
+        if(!w){w=document.createElement('span');w.className='langwarn';w.setAttribute('aria-hidden','true');c.appendChild(w);}
+        var langs=(c.getAttribute('data-langs')||'it').split(' ');
+        if(langs.indexOf(l)<0){w.textContent='🌐 '+langs.map(function(x){return x.toUpperCase();}).join(' · ');w.title=WARN[l]||WARN.it;w.style.display='inline-block';}
+        else{w.style.display='none';}
+      }
     });
     var sel=document.getElementById('langSel'); if(sel)sel.value=l;
   }
