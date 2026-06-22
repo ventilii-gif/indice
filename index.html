@@ -102,12 +102,16 @@ footer{max-width:960px;margin:1.8rem auto 0;padding:1.1rem 1rem;
 footer a{color:var(--primary-d);text-decoration:none;font-weight:600}
 footer a:hover{text-decoration:underline}
 
-/* ===== Interruttore tema ===== */
-.hd-right{display:flex;align-items:center;gap:.55rem}
+/* ===== Interruttore tema / lingua ===== */
+.hd-right{display:flex;align-items:center;gap:.5rem}
 .theme-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);
   border-radius:8px;padding:.32rem .55rem;font-size:1.02em;line-height:1;cursor:pointer;
   font-family:inherit;transition:background .15s,border-color .15s}
 .theme-btn:hover{background:var(--primary-l);border-color:var(--primary)}
+.lang-sel{background:var(--surface2);border:1px solid var(--border);color:var(--text);
+  border-radius:8px;padding:.3rem .4rem;font-size:.78em;font-weight:700;cursor:pointer;
+  font-family:inherit;letter-spacing:.02em}
+.lang-sel:hover{border-color:var(--primary)}
 @media(max-width:430px){.hd-right .sub{display:none}}
 
 /* ===== Tema scuro (risparmio energetico) ===== */
@@ -134,28 +138,33 @@ footer a:hover{text-decoration:underline}
 </head>
 <body>
 <header>
-  <h1>🎓 Matematica &amp; Fisica</h1>
+  <h1 data-i18n="h1">🎓 Matematica &amp; Fisica</h1>
   <div class="hd-right">
-    <span class="sub">Raccolta web app</span>
+    <span class="sub" data-i18n="sub">Raccolta web app</span>
+    <select class="lang-sel" id="langSel" aria-label="Lingua / Language / Idioma">
+      <option value="it">IT</option>
+      <option value="en">EN</option>
+      <option value="pt">PT-BR</option>
+    </select>
     <button class="theme-btn" id="themeBtn" type="button" aria-label="Attiva o disattiva il tema scuro" title="Tema chiaro / scuro">🌙</button>
   </div>
 </header>
 <main>
 
   <div class="card">
-    <h2>Le web app disponibili</h2>
-    <p>Una raccolta di applicazioni web <strong>didattiche e interattive</strong> — teoria essenziale, simulazioni animate e quiz con feedback immediato — per studiare matematica e fisica direttamente dal browser, anche da smartphone.</p>
-    <div class="tip">💡 Tocca una scheda per aprire l'app corrispondente in una nuova finestra. Buono studio!</div>
+    <h2 data-i18n="intro_h2">Le web app disponibili</h2>
+    <p data-i18n="intro_p">Una raccolta di applicazioni web <strong>didattiche e interattive</strong> — teoria essenziale, simulazioni animate e quiz con feedback immediato — per studiare matematica e fisica direttamente dal browser, anche da smartphone.</p>
+    <div class="tip" data-i18n="intro_tip">💡 Tocca una scheda per aprire l'app corrispondente in una nuova finestra. Buono studio!</div>
   </div>
 
   <div class="notice">
     <span class="ni" aria-hidden="true">ℹ️</span>
-    <p>Questa pagina e le web app collegate sono state realizzate con l'aiuto dell'intelligenza artificiale <strong>Claude</strong> e di diversi suoi agenti. Sono <strong>schede di supporto allo studio personale</strong>: affiancano, ma non sostituiscono, l'uso critico del manuale e la guida di un docente esperto.</p>
+    <p data-i18n="notice">Questa pagina e le web app collegate sono state realizzate con l'aiuto dell'intelligenza artificiale <strong>Claude</strong> e di diversi suoi agenti. Sono <strong>schede di supporto allo studio personale</strong>: affiancano, ma non sostituiscono, l'uso critico del manuale e la guida di un docente esperto.</p>
   </div>
 
   <!-- ============ MATEMATICA ============ -->
   <section class="subject math">
-    <h2 class="subject-h"><span class="ic">📐</span>Matematica<span class="count">9 app</span></h2>
+    <h2 class="subject-h"><span class="ic">📐</span><span data-i18n="sec_math">Matematica</span><span class="count" data-i18n="count_math">9 app</span></h2>
     <div class="home-grid">
 
       <a class="home-card" href="https://ventilii-gif.github.io/Calcolo-letterale-/" target="_blank" rel="noopener">
@@ -226,7 +235,7 @@ footer a:hover{text-decoration:underline}
 
   <!-- ============ FISICA ============ -->
   <section class="subject phys">
-    <h2 class="subject-h"><span class="ic">⚛️</span>Fisica<span class="count">9 app</span></h2>
+    <h2 class="subject-h"><span class="ic">⚛️</span><span data-i18n="sec_phys">Fisica</span><span class="count" data-i18n="count_phys">9 app</span></h2>
     <div class="home-grid">
 
       <a class="home-card" href="https://ventilii-gif.github.io/intro/" target="_blank" rel="noopener">
@@ -297,7 +306,7 @@ footer a:hover{text-decoration:underline}
 
   <!-- ============ ALTRO ============ -->
   <section class="subject altro">
-    <h2 class="subject-h"><span class="ic">🧩</span>Altro<span class="count">1 in arrivo</span></h2>
+    <h2 class="subject-h"><span class="ic">🧩</span><span data-i18n="sec_altro">Altro</span><span class="count" data-i18n="count_altro">1 in arrivo</span></h2>
     <div class="home-grid">
 
       <a class="home-card" href="https://ventilii-gif.github.io/ai/#/dashboard" target="_blank" rel="noopener">
@@ -307,11 +316,11 @@ footer a:hover{text-decoration:underline}
         <span class="url">ventilii-gif.github.io/ai</span>
       </a>
 
-      <div class="home-card soon">
+      <div class="home-card soon" data-key="civica">
         <span class="ico">🏛️</span>
         <strong>Educazione civica</strong>
         <span class="desc">Costituzione, istituzioni e cittadinanza attiva: diritti e doveri, legalità, sostenibilità e cittadinanza digitale.</span>
-        <span class="soon-badge">Prossimamente</span>
+        <span class="soon-badge" data-i18n="soon_badge">Prossimamente</span>
       </div>
 
       <a class="home-card" href="https://ventilii-gif.github.io/finanza/" target="_blank" rel="noopener">
@@ -326,26 +335,203 @@ footer a:hover{text-decoration:underline}
 
   <div class="notice end">
     <span class="ni" aria-hidden="true">ℹ️</span>
-    <p>Ricorda: questa pagina e le web app collegate sono state realizzate con l'aiuto dell'intelligenza artificiale <strong>Claude</strong> e di diversi suoi agenti. Restano strumenti di aiuto allo studio personale, da affiancare con spirito critico al manuale e alla guida di un docente esperto. Buono studio!</p>
+    <p data-i18n="notice_end">Ricorda: questa pagina e le web app collegate sono state realizzate con l'aiuto dell'intelligenza artificiale <strong>Claude</strong> e di diversi suoi agenti. Restano strumenti di aiuto allo studio personale, da affiancare con spirito critico al manuale e alla guida di un docente esperto. Buono studio!</p>
   </div>
 
   <footer>
-    Raccolta di web app didattiche · <a href="https://github.com/ventilii-gif" target="_blank" rel="noopener">github.com/ventilii-gif</a>
+    <span data-i18n="footer">Raccolta di web app didattiche</span> · <a href="https://github.com/ventilii-gif" target="_blank" rel="noopener">github.com/ventilii-gif</a>
   </footer>
 
 </main>
 <script>
 (function(){
-  var b=document.getElementById('themeBtn'),m=document.querySelector('meta[name="theme-color"]');
-  function cur(){return document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light';}
-  function apply(t){
+  /* ===== Tema ===== */
+  var meta=document.querySelector('meta[name="theme-color"]'),tb=document.getElementById('themeBtn');
+  function curTheme(){return document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light';}
+  function applyTheme(t){
     document.documentElement.setAttribute('data-theme',t);
-    if(b)b.textContent=t==='dark'?'☀️':'🌙';
-    if(m)m.setAttribute('content',t==='dark'?'#0f141a':'#ffffff');
+    if(tb)tb.textContent=t==='dark'?'☀️':'🌙';
+    if(meta)meta.setAttribute('content',t==='dark'?'#0f141a':'#ffffff');
   }
-  apply(cur());
-  if(b)b.addEventListener('click',function(){var t=cur()==='dark'?'light':'dark';try{localStorage.setItem('theme',t);}catch(e){}apply(t);});
-  try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){if(!localStorage.getItem('theme'))apply(e.matches?'dark':'light');});}catch(e){}
+  applyTheme(curTheme());
+  if(tb)tb.addEventListener('click',function(){var t=curTheme()==='dark'?'light':'dark';try{localStorage.setItem('theme',t);}catch(e){}applyTheme(t);});
+  try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){if(!localStorage.getItem('theme'))applyTheme(e.matches?'dark':'light');});}catch(e){}
+
+  /* ===== Lingua (i18n) ===== */
+  var UI={
+    it:{
+      h1:"🎓 Matematica &amp; Fisica", sub:"Raccolta web app",
+      intro_h2:"Le web app disponibili",
+      intro_p:"Una raccolta di applicazioni web <strong>didattiche e interattive</strong> — teoria essenziale, simulazioni animate e quiz con feedback immediato — per studiare matematica e fisica direttamente dal browser, anche da smartphone.",
+      intro_tip:"💡 Tocca una scheda per aprire l'app corrispondente in una nuova finestra. Buono studio!",
+      notice:"Questa pagina e le web app collegate sono state realizzate con l'aiuto dell'intelligenza artificiale <strong>Claude</strong> e di diversi suoi agenti. Sono <strong>schede di supporto allo studio personale</strong>: affiancano, ma non sostituiscono, l'uso critico del manuale e la guida di un docente esperto.",
+      notice_end:"Ricorda: questa pagina e le web app collegate sono state realizzate con l'aiuto dell'intelligenza artificiale <strong>Claude</strong> e di diversi suoi agenti. Restano strumenti di aiuto allo studio personale, da affiancare con spirito critico al manuale e alla guida di un docente esperto. Buono studio!",
+      sec_math:"Matematica", sec_phys:"Fisica", sec_altro:"Altro",
+      count_math:"9 app", count_phys:"9 app", count_altro:"1 in arrivo",
+      soon_badge:"Prossimamente", footer:"Raccolta di web app didattiche"
+    },
+    en:{
+      h1:"🎓 Mathematics &amp; Physics", sub:"Web app collection",
+      intro_h2:"The available web apps",
+      intro_p:"A collection of <strong>interactive educational</strong> web apps — essential theory, animated simulations and instant-feedback quizzes — to study mathematics and physics right in your browser, even on a phone.",
+      intro_tip:"💡 Tap a card to open the matching app in a new window. Happy studying!",
+      notice:"This page and the linked web apps were created with the help of the AI <strong>Claude</strong> and several of its agents. They are <strong>aids for personal study</strong>: they support, but do not replace, the critical use of the textbook and the guidance of an expert teacher.",
+      notice_end:"Remember: this page and the linked web apps were created with the help of the AI <strong>Claude</strong> and several of its agents. They remain aids for personal study, to be used critically alongside the textbook and the guidance of an expert teacher. Happy studying!",
+      sec_math:"Mathematics", sec_phys:"Physics", sec_altro:"Other",
+      count_math:"9 apps", count_phys:"9 apps", count_altro:"1 coming soon",
+      soon_badge:"Coming soon", footer:"A collection of educational web apps"
+    },
+    pt:{
+      h1:"🎓 Matemática e Física", sub:"Coleção de web apps",
+      intro_h2:"Os web apps disponíveis",
+      intro_p:"Uma coleção de aplicativos web <strong>didáticos e interativos</strong> — teoria essencial, simulações animadas e quizzes com feedback imediato — para estudar matemática e física direto no navegador, inclusive no celular.",
+      intro_tip:"💡 Toque em um cartão para abrir o app correspondente em uma nova janela. Bons estudos!",
+      notice:"Esta página e os web apps vinculados foram criados com a ajuda da IA <strong>Claude</strong> e de vários de seus agentes. São <strong>materiais de apoio ao estudo pessoal</strong>: complementam, mas não substituem, o uso crítico do livro didático e a orientação de um professor experiente.",
+      notice_end:"Lembre-se: esta página e os web apps vinculados foram criados com a ajuda da IA <strong>Claude</strong> e de vários de seus agentes. Continuam sendo materiais de apoio ao estudo pessoal, para usar com espírito crítico junto ao livro didático e à orientação de um professor experiente. Bons estudos!",
+      sec_math:"Matemática", sec_phys:"Física", sec_altro:"Outros",
+      count_math:"9 apps", count_phys:"9 apps", count_altro:"1 em breve",
+      soon_badge:"Em breve", footer:"Coleção de web apps didáticos"
+    }
+  };
+  var DOCTITLE={it:"Matematica e Fisica · Web app didattiche",en:"Mathematics & Physics · Educational web apps",pt:"Matemática e Física · Apps educativos"};
+  var METADESC={
+    it:"Raccolta di web app didattiche e interattive di matematica e fisica: teoria, simulazioni e quiz direttamente dal browser.",
+    en:"A collection of interactive educational web apps for mathematics and physics: theory, simulations and quizzes right in your browser.",
+    pt:"Coleção de web apps didáticos e interativos de matemática e física: teoria, simulações e quizzes direto no navegador."
+  };
+  /* [titolo, descrizione] per ogni app, indicizzate per slug dell'URL */
+  var CARDS={
+    "Calcolo-letterale-":{
+      it:["Calcolo algebrico","Monomi, polinomi, prodotti notevoli, scomposizione e frazioni algebriche: teoria, esercizi guidati passo-passo e quiz."],
+      en:["Algebraic calculus","Monomials, polynomials, special products, factoring and algebraic fractions: theory, step-by-step guided exercises and quizzes."],
+      pt:["Cálculo algébrico","Monômios, polinômios, produtos notáveis, fatoração e frações algébricas: teoria, exercícios guiados passo a passo e quizzes."]
+    },
+    "prodotti":{
+      it:["Prodotti in algebra","Animazioni passo-passo sui prodotti tra espressioni algebriche e sulla scomposizione in fattori."],
+      en:["Products in algebra","Step-by-step animations of products between algebraic expressions and of factoring."],
+      pt:["Produtos em álgebra","Animações passo a passo sobre produtos entre expressões algébricas e sobre fatoração."]
+    },
+    "equazioni-disequazioni-sistemi":{
+      it:["Equazioni, disequazioni e sistemi","Algebra di 1° e 2° grado: equazioni, disequazioni, studio del segno e sistemi (sostituzione, riduzione, Cramer), con simulazioni e quiz."],
+      en:["Equations, inequalities and systems","First- and second-degree algebra: equations, inequalities, sign analysis and systems (substitution, elimination, Cramer), with simulations and quizzes."],
+      pt:["Equações, inequações e sistemas","Álgebra de 1º e 2º grau: equações, inequações, estudo do sinal e sistemas (substituição, adição, Cramer), com simulações e quizzes."]
+    },
+    "Piano-cartesiano-1":{
+      it:["Piano cartesiano","Geometria analitica: retta, parabola e coniche con lezioni illustrate, grafici animati e quiz."],
+      en:["Cartesian plane","Analytic geometry: line, parabola and conics with illustrated lessons, animated graphs and quizzes."],
+      pt:["Plano cartesiano","Geometria analítica: reta, parábola e cônicas com lições ilustradas, gráficos animados e quizzes."]
+    },
+    "esponenziali-logaritmi":{
+      it:["Esponenziali e logaritmi","Proprietà di potenze e logaritmi, equazioni e disequazioni esponenziali e logaritmiche, con teoria, simulazioni e quiz."],
+      en:["Exponentials and logarithms","Properties of powers and logarithms, exponential and logarithmic equations and inequalities, with theory, simulations and quizzes."],
+      pt:["Exponenciais e logaritmos","Propriedades de potências e logaritmos, equações e inequações exponenciais e logarítmicas, com teoria, simulações e quizzes."]
+    },
+    "trigonometria":{
+      it:["Goniometria e trigonometria","Funzioni goniometriche (seno, coseno, tangente), archi associati, equazioni goniometriche e teoremi sui triangoli (seni e Carnot), con simulazioni e quiz."],
+      en:["Trigonometry","Trigonometric functions (sine, cosine, tangent), related angles, trigonometric equations and triangle theorems (law of sines and cosines), with simulations and quizzes."],
+      pt:["Trigonometria","Funções trigonométricas (seno, cosseno, tangente), arcos associados, equações trigonométricas e teoremas dos triângulos (lei dos senos e dos cossenos), com simulações e quizzes."]
+    },
+    "derivate":{
+      it:["Limiti e derivate","Limiti e forme indeterminate, continuità e asintoti, derivate e regole di derivazione, con applicazioni allo studio di funzione e quiz."],
+      en:["Limits and derivatives","Limits and indeterminate forms, continuity and asymptotes, derivatives and differentiation rules, with applications to function study and quizzes."],
+      pt:["Limites e derivadas","Limites e formas indeterminadas, continuidade e assíntotas, derivadas e regras de derivação, com aplicações ao estudo de funções e quizzes."]
+    },
+    "studio-funzioni":{
+      it:["Studio di funzioni","Dominio, simmetrie, segno, limiti, asintoti e derivata prima per lo studio completo di una funzione."],
+      en:["Function study","Domain, symmetry, sign, limits, asymptotes and first derivative for the complete study of a function."],
+      pt:["Estudo de funções","Domínio, simetrias, sinal, limites, assíntotas e primeira derivada para o estudo completo de uma função."]
+    },
+    "solidi-di-rotazione":{
+      it:["Solidi di rotazione","Come nascono cilindro, cono e sfera dalla rotazione di una figura piana: superfici e volumi, per la terza media."],
+      en:["Solids of revolution","How cylinder, cone and sphere arise from rotating a plane figure: surfaces and volumes, for middle school."],
+      pt:["Sólidos de revolução","Como o cilindro, o cone e a esfera surgem da rotação de uma figura plana: superfícies e volumes, para o ensino fundamental."]
+    },
+    "intro":{
+      it:["Introduzione alla fisica classica","Quadro d'insieme per iniziare: grandezze e misure, cinematica, dinamica ed energia, con teoria, simulazioni e quiz."],
+      en:["Introduction to classical physics","A starting overview: quantities and measurements, kinematics, dynamics and energy, with theory, simulations and quizzes."],
+      pt:["Introdução à física clássica","Uma visão geral para começar: grandezas e medidas, cinemática, dinâmica e energia, com teoria, simulações e quizzes."]
+    },
+    "vettori":{
+      it:["Vettori","Modulo, componenti, somma, differenza e prodotti tra vettori, con simulazioni animate e quiz."],
+      en:["Vectors","Magnitude, components, sum, difference and products of vectors, with animated simulations and quizzes."],
+      pt:["Vetores","Módulo, componentes, soma, diferença e produtos de vetores, com simulações animadas e quizzes."]
+    },
+    "statica":{
+      it:["Equilibrio dei corpi","Equilibrio di punti e corpi rigidi: funi, piano inclinato, momento, leve e travi, con simulazioni interattive."],
+      en:["Equilibrium of bodies","Equilibrium of points and rigid bodies: ropes, inclined plane, torque, levers and beams, with interactive simulations."],
+      pt:["Equilíbrio dos corpos","Equilíbrio de pontos e corpos rígidos: cordas, plano inclinado, momento, alavancas e vigas, com simulações interativas."]
+    },
+    "dinamica":{
+      it:["Principi della dinamica","Le tre leggi di Newton sul piano orizzontale e inclinato, con attrito, simulazioni e quiz."],
+      en:["Newton's laws of motion","Newton's three laws on horizontal and inclined planes, with friction, simulations and quizzes."],
+      pt:["Princípios da dinâmica","As três leis de Newton no plano horizontal e inclinado, com atrito, simulações e quizzes."]
+    },
+    "mcu-ma":{
+      it:["Moto circolare e armonico","Dal moto circolare uniforme al moto armonico: velocità, accelerazione centripeta, molla e pendolo."],
+      en:["Circular and harmonic motion","From uniform circular motion to harmonic motion: velocity, centripetal acceleration, spring and pendulum."],
+      pt:["Movimento circular e harmônico","Do movimento circular uniforme ao movimento harmônico: velocidade, aceleração centrípeta, mola e pêndulo."]
+    },
+    "corpi-rigidi":{
+      it:["Corpi rigidi in rotazione","Cinematica e dinamica rotazionale: momento d'inerzia, momento angolare e sua conservazione, energia di rotazione, con simulazioni e quiz."],
+      en:["Rotating rigid bodies","Rotational kinematics and dynamics: moment of inertia, angular momentum and its conservation, rotational energy, with simulations and quizzes."],
+      pt:["Corpos rígidos em rotação","Cinemática e dinâmica rotacional: momento de inércia, momento angular e sua conservação, energia de rotação, com simulações e quizzes."]
+    },
+    "gravitazione":{
+      it:["Gravitazione","Leggi di Keplero, gravitazione universale di Newton, campo gravitazionale, velocità di fuga e moto dei satelliti, con simulazioni e quiz."],
+      en:["Gravitation","Kepler's laws, Newton's universal gravitation, gravitational field, escape velocity and satellite motion, with simulations and quizzes."],
+      pt:["Gravitação","Leis de Kepler, gravitação universal de Newton, campo gravitacional, velocidade de escape e movimento de satélites, com simulações e quizzes."]
+    },
+    "termodinamica":{
+      it:["Termodinamica","Temperatura e calore, passaggi di stato, gas perfetti e i principi della termodinamica, con simulazioni e quiz."],
+      en:["Thermodynamics","Temperature and heat, changes of state, ideal gases and the laws of thermodynamics, with simulations and quizzes."],
+      pt:["Termodinâmica","Temperatura e calor, mudanças de estado, gases ideais e as leis da termodinâmica, com simulações e quizzes."]
+    },
+    "relativita":{
+      it:["Relatività speciale","Spaziotempo, dilatazione dei tempi, dinamica relativistica e diagrammi di Minkowski, con interfaccia bilingue."],
+      en:["Special relativity","Spacetime, time dilation, relativistic dynamics and Minkowski diagrams, with a bilingual interface."],
+      pt:["Relatividade especial","Espaço-tempo, dilatação do tempo, dinâmica relativística e diagramas de Minkowski, com interface bilíngue."]
+    },
+    "ai":{
+      it:["Educazione informatica","Corso interattivo e gratuito per principianti sull'intelligenza artificiale: moduli, quiz, laboratorio di prompt e attestato finale."],
+      en:["Computer science education","A free interactive beginner course on artificial intelligence: modules, quizzes, a prompt lab and a final certificate."],
+      pt:["Educação em informática","Curso interativo e gratuito para iniciantes sobre inteligência artificial: módulos, quizzes, laboratório de prompts e certificado final."]
+    },
+    "finanza":{
+      it:["Educazione finanziaria","Gestire lo stipendio nella pratica: leggere la busta paga, costruire un budget, risparmiare e pianificare, con dati simulati."],
+      en:["Financial education","Managing your salary in practice: reading your payslip, building a budget, saving and planning, with simulated data."],
+      pt:["Educação financeira","Gerenciar o salário na prática: ler o holerite, montar um orçamento, poupar e planejar, com dados simulados."]
+    },
+    "civica":{
+      it:["Educazione civica","Costituzione, istituzioni e cittadinanza attiva: diritti e doveri, legalità, sostenibilità e cittadinanza digitale."],
+      en:["Civic education","Constitution, institutions and active citizenship: rights and duties, legality, sustainability and digital citizenship."],
+      pt:["Educação cívica","Constituição, instituições e cidadania ativa: direitos e deveres, legalidade, sustentabilidade e cidadania digital."]
+    }
+  };
+  function slug(a){try{return new URL(a.href).pathname.replace(/\//g,'');}catch(e){return '';}}
+  function applyLang(l){
+    if(!UI[l])l='it';
+    document.documentElement.setAttribute('lang', l==='pt'?'pt-BR':l);
+    document.title=DOCTITLE[l];
+    var md=document.querySelector('meta[name="description"]'); if(md)md.setAttribute('content',METADESC[l]);
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var v=UI[l][el.getAttribute('data-i18n')];
+      if(v!=null)el.innerHTML=v;
+    });
+    document.querySelectorAll('.home-card').forEach(function(c){
+      var key=c.getAttribute('data-key')||slug(c);
+      var rec=CARDS[key]; if(!rec)return;
+      var tr=rec[l]||rec.it, s=c.querySelector('strong'), d=c.querySelector('.desc');
+      if(s)s.textContent=tr[0];
+      if(d)d.textContent=tr[1];
+    });
+    var sel=document.getElementById('langSel'); if(sel)sel.value=l;
+  }
+  var saved; try{saved=localStorage.getItem('lang');}catch(e){}
+  var nav=(navigator.language||'it').toLowerCase();
+  var initial=saved||(nav.indexOf('pt')===0?'pt':(nav.indexOf('en')===0?'en':'it'));
+  applyLang(initial);
+  var ls=document.getElementById('langSel');
+  if(ls)ls.addEventListener('change',function(){var l=ls.value;try{localStorage.setItem('lang',l);}catch(e){}applyLang(l);});
 })();
 </script>
 </body>
