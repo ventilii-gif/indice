@@ -23,7 +23,8 @@ html,body{background:var(--bg);color:var(--text);
 /* ===== Header ===== */
 header{background:var(--surface);border-bottom:1px solid var(--border);
   padding:.7rem 1rem;position:sticky;top:0;z-index:10;
-  display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+  display:flex;flex-direction:column;gap:.42rem}
+.hd-top{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
 header h1{font-size:clamp(1.02rem,3.6vw,1.32rem);color:var(--text);
   font-weight:700;letter-spacing:-.01em}
 header .sub{color:var(--muted);font-size:.8em;font-weight:600;white-space:nowrap}
@@ -118,6 +119,20 @@ footer a:hover{text-decoration:underline}
 .lang-sel:hover{border-color:var(--primary)}
 @media(max-width:430px){.hd-right .sub{display:none}}
 
+/* ===== Barra di ricerca ===== */
+.search-input{width:100%;background:var(--bg);border:1.5px solid var(--border);
+  border-radius:9px;padding:.38rem .8rem;font-size:.88em;color:var(--text);
+  font-family:inherit;outline:none;
+  transition:border-color .15s,box-shadow .15s;appearance:none;-webkit-appearance:none}
+.search-input:focus{border-color:var(--primary);box-shadow:0 0 0 2.5px var(--primary-l)}
+.search-empty{text-align:center;padding:2.5rem 1rem;color:var(--muted);
+  font-size:.95em;display:none}
+@keyframes card-flash{0%{box-shadow:0 0 0 3px var(--primary),0 4px 14px rgba(21,101,192,.18)}
+  100%{box-shadow:0 1px 2px rgba(20,30,60,.04)}}
+.card-highlight{animation:card-flash .9s ease-out}
+:root[data-theme="dark"] .search-input{background:var(--surface2)}
+:root[data-theme="dark"] .search-input:focus{box-shadow:0 0 0 2.5px rgba(91,155,232,.18)}
+
 /* ===== Tema scuro (risparmio energetico) ===== */
 :root[data-theme="dark"]{
   color-scheme:dark;
@@ -142,18 +157,23 @@ footer a:hover{text-decoration:underline}
 </head>
 <body>
 <header>
-  <h1 data-i18n="h1">🎓 Matematica &amp; Fisica</h1>
-  <div class="hd-right">
-    <span class="sub" data-i18n="sub">Raccolta web app</span>
-    <select class="lang-sel" id="langSel" aria-label="Lingua / Language / Idioma">
-      <option value="it">IT</option>
-      <option value="en">EN</option>
-      <option value="pt">PT-BR</option>
-    </select>
-    <button class="theme-btn" id="themeBtn" type="button" aria-label="Attiva o disattiva il tema scuro" title="Tema chiaro / scuro">🌙</button>
+  <div class="hd-top">
+    <h1 data-i18n="h1">🎓 Matematica &amp; Fisica</h1>
+    <div class="hd-right">
+      <span class="sub" data-i18n="sub">Raccolta web app</span>
+      <select class="lang-sel" id="langSel" aria-label="Lingua / Language / Idioma">
+        <option value="it">IT</option>
+        <option value="en">EN</option>
+        <option value="pt">PT-BR</option>
+      </select>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Attiva o disattiva il tema scuro" title="Tema chiaro / scuro">🌙</button>
+    </div>
   </div>
+  <input type="search" id="searchInput" class="search-input" placeholder="Cerca nell'indice…" autocomplete="off" spellcheck="false" aria-label="Cerca">
 </header>
 <main>
+
+  <p class="search-empty" id="searchEmpty" aria-live="polite"></p>
 
   <div class="card">
     <h2 data-i18n="intro_h2">Le web app disponibili</h2>
@@ -372,7 +392,8 @@ footer a:hover{text-decoration:underline}
       notice_end:"Ricorda: questa pagina e le web app collegate sono state realizzate con l'aiuto dell'intelligenza artificiale <strong>Claude</strong> e di diversi suoi agenti. Restano strumenti di aiuto allo studio personale, da affiancare con spirito critico al manuale e alla guida di un docente esperto. Buono studio!",
       sec_math:"Matematica", sec_phys:"Fisica", sec_altro:"Altro",
       count_math:"9 app", count_phys:"9 app", count_altro:"3 app",
-      soon_badge:"Prossimamente", footer:"Raccolta di web app didattiche"
+      soon_badge:"Prossimamente", footer:"Raccolta di web app didattiche",
+      search_ph:"Cerca nell'indice…", search_none:"Nessun risultato."
     },
     en:{
       h1:"🎓 Mathematics &amp; Physics", sub:"Web app collection",
@@ -383,7 +404,8 @@ footer a:hover{text-decoration:underline}
       notice_end:"Remember: this page and the linked web apps were created with the help of the AI <strong>Claude</strong> and several of its agents. They remain aids for personal study, to be used critically alongside the textbook and the guidance of an expert teacher. Happy studying!",
       sec_math:"Mathematics", sec_phys:"Physics", sec_altro:"Other",
       count_math:"9 apps", count_phys:"9 apps", count_altro:"3 apps",
-      soon_badge:"Coming soon", footer:"A collection of educational web apps"
+      soon_badge:"Coming soon", footer:"A collection of educational web apps",
+      search_ph:"Search the index…", search_none:"No results found."
     },
     pt:{
       h1:"🎓 Matemática e Física", sub:"Coleção de web apps",
@@ -394,7 +416,8 @@ footer a:hover{text-decoration:underline}
       notice_end:"Lembre-se: esta página e os web apps vinculados foram criados com a ajuda da IA <strong>Claude</strong> e de vários de seus agentes. Continuam sendo materiais de apoio ao estudo pessoal, para usar com espírito crítico junto ao livro didático e à orientação de um professor experiente. Bons estudos!",
       sec_math:"Matemática", sec_phys:"Física", sec_altro:"Outros",
       count_math:"9 apps", count_phys:"9 apps", count_altro:"3 apps",
-      soon_badge:"Em breve", footer:"Coleção de web apps didáticos"
+      soon_badge:"Em breve", footer:"Coleção de web apps didáticos",
+      search_ph:"Pesquisar no índice…", search_none:"Nenhum resultado encontrado."
     }
   };
   var DOCTITLE={it:"Matematica e Fisica · Web app didattiche",en:"Mathematics & Physics · Educational web apps",pt:"Matemática e Física · Apps educativos"};
@@ -537,6 +560,10 @@ footer a:hover{text-decoration:underline}
       }
     });
     var sel=document.getElementById('langSel'); if(sel)sel.value=l;
+    var si=document.getElementById('searchInput');
+    if(si&&UI[l].search_ph)si.placeholder=UI[l].search_ph;
+    var se=document.getElementById('searchEmpty');
+    if(se&&UI[l].search_none)se.textContent=UI[l].search_none;
   }
   var saved; try{saved=localStorage.getItem('lang');}catch(e){}
   var nav=(navigator.language||'it').toLowerCase();
@@ -544,6 +571,44 @@ footer a:hover{text-decoration:underline}
   applyLang(initial);
   var ls=document.getElementById('langSel');
   if(ls)ls.addEventListener('change',function(){var l=ls.value;try{localStorage.setItem('lang',l);}catch(e){}applyLang(l);});
+})();
+
+/* ===== Ricerca / filtro ===== */
+(function(){
+  var si=document.getElementById('searchInput');
+  var em=document.getElementById('searchEmpty');
+  if(!si)return;
+  function firstVisible(){
+    var all=document.querySelectorAll('.home-card'), r=null;
+    for(var i=0;i<all.length;i++){if(all[i].style.display!=='none'){r=all[i];break;}}
+    return r;
+  }
+  function doFilter(){
+    var q=si.value.trim().toLowerCase();
+    document.querySelectorAll('.home-card').forEach(function(c){
+      if(!q){c.style.display='';return;}
+      var t=(c.querySelector('strong')||{}).textContent||'';
+      var d=(c.querySelector('.desc')||{}).textContent||'';
+      c.style.display=((t+' '+d).toLowerCase().indexOf(q)>=0)?'':'none';
+    });
+    var anyVis=false;
+    document.querySelectorAll('.subject').forEach(function(sec){
+      var cards=sec.querySelectorAll('.home-card');
+      var vis=0; for(var i=0;i<cards.length;i++){if(cards[i].style.display!=='none')vis++;}
+      sec.style.display=(q&&vis===0)?'none':'';
+      if(vis>0)anyVis=true;
+    });
+    if(em)em.style.display=(q&&!anyVis)?'block':'none';
+  }
+  si.addEventListener('input',doFilter);
+  si.addEventListener('keydown',function(e){
+    if(e.key!=='Enter')return;
+    var c=firstVisible(); if(!c)return;
+    c.scrollIntoView({behavior:'smooth',block:'center'});
+    c.classList.remove('card-highlight');
+    void c.offsetWidth;
+    c.classList.add('card-highlight');
+  });
 })();
 </script>
 </body>
