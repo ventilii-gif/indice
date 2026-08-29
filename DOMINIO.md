@@ -1,25 +1,13 @@
 # ventilii.ai — configurazione
 
-## Come funziona
+## Struttura
 
-Il dominio è agganciato **una volta sola** al *user site* di GitHub Pages
-(repo `ventilii-gif.github.io`). Da lì GitHub serve automaticamente **tutti**
-gli altri repo dell'account sotto lo stesso dominio, senza altra configurazione:
+- `https://ventilii.ai` → questa repo (`indice`), la home
+- `https://<progetto>.ventilii.ai` → un sottodominio per ogni progetto
+- `https://ventilii.ai/<progetto>/` → cartella che reindirizza al sottodominio,
+  così i vecchi link continuano a funzionare
 
-| Repo                     | URL pubblico                       |
-|--------------------------|------------------------------------|
-| `ventilii-gif.github.io` | `https://ventilii.ai/`             |
-| `acustica`               | `https://ventilii.ai/acustica/`    |
-| `derivate`               | `https://ventilii.ai/derivate/`    |
-| *ogni altro repo*        | `https://ventilii.ai/<nome-repo>/` |
-
-Nessun record DNS per progetto, nessun file da aggiungere nei 48 repo: è il
-comportamento nativo di GitHub Pages (un *project site* eredita il dominio
-del *user site*).
-
-## DNS su Namecheap — FATTO
-
-Zona `ventilii.ai` (nameserver Namecheap di default):
+## DNS su Namecheap
 
 | Type  | Host  | Value                     |
 |-------|-------|---------------------------|
@@ -34,17 +22,28 @@ Zona `ventilii.ai` (nameserver Namecheap di default):
 | CNAME | `www` | `ventilii-gif.github.io.` |
 | CNAME | `*`   | `ventilii-gif.github.io.` |
 
-Il record **wildcard `*`** copre in anticipo qualunque sottodominio futuro
-(`fisica.ventilii.ai`, `quiz.ventilii.ai`, ...): non serve più rientrare in
-Namecheap per aggiungerne.
+Il record **wildcard `*`** copre qualunque sottodominio, presente e futuro:
+non serve toccare Namecheap per aggiungerne di nuovi.
 
-## Sottodomini (quando serviranno)
+Restano in zona anche i record MX (`eforward1-5.registrar-servers.com`) e il
+TXT SPF dell'inoltro email di Namecheap: non c'entrano col sito, non vanno
+rimossi.
 
-Con il wildcard già attivo, spostare un progetto su un sottodominio è
-un'operazione di solo GitHub, due passi per repo:
+## Aggiungere un progetto nuovo
 
-1. file `CNAME` in root del repo, con dentro `nome.ventilii.ai`
-2. Settings → Pages → Custom domain → `nome.ventilii.ai`
+1. nella repo del progetto, file `CNAME` in root con dentro `nome.ventilii.ai`
+   (le repo dei progetti pubblicano da branch, quindi il file basta: imposta
+   il dominio da solo, senza passare dalle impostazioni)
+2. in questa repo, una scheda nell'indice che punta a `https://nome.ventilii.ai/`
+3. in questa repo, la cartella `nome/index.html` col reindirizzamento
+
+Nessun passaggio DNS.
+
+## Nota sulla pubblicazione di questa repo
+
+`indice` pubblica tramite il workflow `.github/workflows/pages.yml`, non da
+branch. Con quel metodo GitHub **ignora il file `CNAME`**: il dominio
+personalizzato di questa repo si imposta in Settings → Pages → Custom domain.
 
 ## Protezione da takeover (consigliata)
 
