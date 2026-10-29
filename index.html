@@ -801,7 +801,8 @@ footer a:hover{text-decoration:underline}
       pt:["Ética","Um percurso introdutório pelos grandes temas da ética: dos fundamentos filosóficos aos desafios do mundo contemporâneo."]
     }
   };
-  function slug(a){try{return new URL(a.href).pathname.replace(/\//g,'');}catch(e){return '';}}
+  function slug(a){try{return new URL(a.href).hostname.split('.')[0].toLowerCase();}catch(e){return '';}}
+  var CARDSN={}; (function(){for(var k in CARDS){CARDSN[k.toLowerCase()]=CARDS[k];}})();
   function applyLang(l){
     if(!UI[l])l='it';
     document.documentElement.setAttribute('lang', l==='pt'?'pt-BR':l);
@@ -812,8 +813,8 @@ footer a:hover{text-decoration:underline}
       if(v!=null)el.innerHTML=v;
     });
     document.querySelectorAll('.home-card').forEach(function(c){
-      var key=c.getAttribute('data-key')||slug(c);
-      var rec=CARDS[key]; if(!rec)return;
+      var key=(c.getAttribute('data-key')||slug(c)).toLowerCase();
+      var rec=CARDSN[key]; if(!rec)return;
       var tr=rec[l]||rec.it, s=c.querySelector('strong'), d=c.querySelector('.desc');
       if(s)s.textContent=tr[0];
       if(d)d.textContent=tr[1];
